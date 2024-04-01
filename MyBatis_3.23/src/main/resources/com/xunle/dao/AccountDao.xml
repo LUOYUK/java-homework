@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace:名称空间
+-->
+
+<mapper namespace="com.xunle.dao.AccountDao">
+
+    <select id="findAll" resultType="Account">
+        select *
+        from account;
+    </select>
+
+
+    <delete id="deleteByPrimarykey" parameterType="string">
+        delete from account  where id = #{id};
+    </delete>
+
+
+
+    <insert id="insert">
+        insert into account (id, name, money, createtime, updatetime)
+        values (#{id}, #{name}, #{money}, #{createtime}, #{updatetime});
+    </insert>
+
+
+
+
+    <select id="selectByPrimaryKey" parameterType="string" resultType="Account">
+        select *
+        from account
+        where <if test="id!=null">
+                         id = #{id}
+              </if>;
+
+    </select>
+
+
+    <update id="updateByPrimarykey">
+        update account
+        set id = #{id},
+            name = #{name},
+            money = #{money},
+            createtime = #{createtime},
+            updatetime = #{updatetime}
+        where id = #{id};
+    </update>
+
+    <update id="transfer">
+
+    </update>
+
+
+</mapper>
